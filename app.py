@@ -20,8 +20,8 @@ while(True):
         url = 'https://192.168.193.1:1442/login?a=b'
         rsp = requests.get(url,verify=False)
         magic = re.findall('name="magic" value="([^"]+)">',rsp.text)[0]
-        username = os.environ('USER')
-        pwd = os.environ('PASS')
+        username = os.getenv('USER')
+        pwd = os.getenv('PASS')
         data = '4Tredir=http%3A%2F%2Fspeedtest.net%2F&magic='+magic+'&username='+ username +'&password=' + pwd
         hdrs = {'referer':url}
         rp = requests.post('https://192.168.193.1:1442/',verify=False,data=data,headers=hdrs)
